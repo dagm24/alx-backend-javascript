@@ -1,6 +1,10 @@
 'use strict';
 const request = require('request');
 const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('./api'); 
+
+chai.use(chaiHttp);
 
 describe('GET /', () => {
   it('endpoint: GET /', (done) => {
@@ -61,17 +65,13 @@ describe('GET /available_payments', () => {
 
 describe('POST /login', () => {
   it('POST /login', (done) => {
-    const call = {
-      url: 'http://localhost:7865/login',
-      method: 'POST',
-      json: {
-        userName: 'Javi',
-      },
-    };
-    request(call, (error, response, body) => {
-      chai.expect(response.statusCode).to.equal(200);
-      chai.expect(body).to.equal('Welcome Javi');
-      done();
-    });
+    chai.request(app)
+      .post('/login')
+      .send({ userName: 'Javi' })
+      .end((err, res) => {
+        chai.expect(res).to.have.status(200);
+        chai.expect(res.text).to.equal('Welcome Javi');
+        done();
+      });
   });
 });
