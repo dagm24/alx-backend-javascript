@@ -1,4 +1,4 @@
-console.log('Welcome to Holberton School, what is your name?');
+console.log('Welcome to ALX, what is your name?');
 process.stdin.on('data', (d) => {
   if (d.toString().trim() !== '') {
     process.stdout.write(`Your name is: ${d.toString()}`);
