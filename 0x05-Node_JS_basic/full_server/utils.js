@@ -1,20 +1,20 @@
-const fs = require('fs');
+const fs = require("fs");
 
 function readDatabase(path) {
   return new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (err, datatext) => {
+    fs.readFile(path, "utf8", (err, datatext) => {
       if (err) {
-        reject(Error('Cannot load the database'));
+        reject(Error("Cannot load the database"));
       } else {
         const datatxt = datatext.split(/\r?\n/);
         const data = [];
         for (const i of datatxt) {
-          if (i !== '') {
-            data.push(i.split(','));
+          if (i !== "") {
+            data.push(i.split(","));
           }
         }
-        const idxFN = data[0].indexOf('firstname');
-        const idxFD = data[0].indexOf('field');
+        const idxFN = data[0].indexOf("firstname");
+        const idxFD = data[0].indexOf("field");
         const dict = {};
         for (const line of data) {
           if (data.indexOf(line) !== 0) {
