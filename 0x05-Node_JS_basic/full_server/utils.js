@@ -1,4 +1,4 @@
-import { promises as fs } from "fs";
+import { promises as fs } from 'fs';
 
 /**
  * Reads the data of students in a CSV data file.
@@ -7,19 +7,19 @@ import { promises as fs } from "fs";
  */
 const readDatabase = async (dataPath) => {
   if (!dataPath) {
-    throw new Error("Cannot load the database");
+    throw new Error('Cannot load the database');
   }
 
   try {
-    const data = await fs.readFile(dataPath, "utf-8");
-    const fileLines = data.trim().split("\n");
+    const data = await fs.readFile(dataPath, 'utf-8');
+    const fileLines = data.trim().split('\n');
 
     const studentGroups = {};
-    const dbFieldNames = fileLines[0].split(",");
+    const dbFieldNames = fileLines[0].split(',');
     const studentPropNames = dbFieldNames.slice(0, dbFieldNames.length - 1);
 
     for (const line of fileLines.slice(1)) {
-      const studentRecord = line.split(",");
+      const studentRecord = line.split(',');
       const studentPropValues = studentRecord.slice(
         0,
         studentRecord.length - 1
@@ -39,7 +39,7 @@ const readDatabase = async (dataPath) => {
 
     return studentGroups;
   } catch (err) {
-    throw new Error("Cannot load the database");
+    throw new Error('Cannot load the database');
   }
 };
 
