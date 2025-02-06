@@ -34,6 +34,7 @@ const readDatabase = async (dataPath) => {
         propName,
         studentPropValues[idx],
       ]);
+
       studentGroups[field].push(Object.fromEntries(studentEntries));
     }
 
