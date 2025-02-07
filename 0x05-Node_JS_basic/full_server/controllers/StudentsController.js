@@ -28,7 +28,7 @@ class StudentsController {
         };
 
         for (const [field, group] of Object.entries(studentGroups).sort(
-          cmpFxn
+          cmpFxn,
         )) {
           responseParts.push(
             [
@@ -42,13 +42,13 @@ class StudentsController {
       })
       .catch((err) => {
         response
-          .status(500)
+          .status(500),
           .send(err instanceof Error ? err.message : err.toString());
       });
   }
 
   static getAllStudentsByMajor(request, response) {
-    const dataPath = process.argv.length > 2 ? process.argv[2] : "";
+    const dataPath = process.argv.length > 2 ? process.argv[2] : '';
     const { major } = request.params;
 
     if (!VALID_MAJORS.includes(major)) {
@@ -76,4 +76,3 @@ class StudentsController {
 }
 
 export default StudentsController;
-
