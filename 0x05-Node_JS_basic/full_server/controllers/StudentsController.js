@@ -32,7 +32,7 @@ class StudentsController {
         )) {
           responseParts.push(
             [
-              'Number of students in ${field}: ${group.length}.',
+              `Number of students in ${field}: ${group.length}.`,
               'List:',
               group.map((student) => student.firstname).join(', '),
             ].join(' ')
@@ -57,13 +57,13 @@ class StudentsController {
     }
     readDatabase(dataPath)
       .then((studentGroups) => {
-        let responseText = "";
+        let responseText = '';
 
         if (Object.keys(studentGroups).includes(major)) {
           const group = studentGroups[major];
           responseText = `List: ${group
             .map((student) => student.firstname)
-            .join(", ")}`;
+            .join(', ')}`;
         }
         response.status(200).send(responseText);
       })
@@ -76,3 +76,4 @@ class StudentsController {
 }
 
 export default StudentsController;
+
