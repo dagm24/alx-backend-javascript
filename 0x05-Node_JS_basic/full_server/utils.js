@@ -22,7 +22,7 @@ const readDatabase = async (dataPath) => {
       const studentRecord = line.split(',');
       const studentPropValues = studentRecord.slice(
         0,
-        studentRecord.length - 1
+        studentRecord.length - 1,
       );
 
       const field = studentRecord[studentRecord.length - 1];
