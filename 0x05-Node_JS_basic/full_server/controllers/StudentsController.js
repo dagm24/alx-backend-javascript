@@ -42,7 +42,7 @@ class StudentsController {
       })
       .catch((err) => {
         response
-          .status(500),
+          .status(500)
           .send(err instanceof Error ? err.message : err.toString());
       });
   }
