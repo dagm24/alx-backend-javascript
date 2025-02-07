@@ -24,6 +24,7 @@ const readDatabase = async (dataPath) => {
         0,
         studentRecord.length - 1
       );
+
       const field = studentRecord[studentRecord.length - 1];
 
       if (!studentGroups[field]) {
