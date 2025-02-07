@@ -1,20 +1,20 @@
-import readDatabase from "../utils.js";
+import readDatabase from '../utils.js';
 
 /**
  * The list of supported majors.
  */
-const VALID_MAJORS = ["CS", "SWE"];
+const VALID_MAJORS = ['CS', 'SWE'];
 
 /**
  * Contains the student-related route handlers.
  */
 class StudentsController {
   static getAllStudents(request, response) {
-    const dataPath = process.argv.length > 2 ? process.argv[2] : "";
+    const dataPath = process.argv.length > 2 ? process.argv[2] : '';
 
     readDatabase(dataPath)
       .then((studentGroups) => {
-        const responseParts = ["This is the list of our students"];
+        const responseParts = ['This is the list of our students'];
         // A comparison function for ordering a list of strings in ascending
         // order by alphabetic order and case insensitive
         const cmpFxn = (a, b) => {
@@ -32,13 +32,13 @@ class StudentsController {
         )) {
           responseParts.push(
             [
-              `Number of students in ${field}: ${group.length}.`,
-              "List:",
-              group.map((student) => student.firstname).join(", "),
-            ].join(" ")
+              'Number of students in ${field}: ${group.length}.',
+              'List:',
+              group.map((student) => student.firstname).join(', '),
+            ].join(' ')
           );
         }
-        response.status(200).send(responseParts.join("\n"));
+        response.status(200).send(responseParts.join('\n'));
       })
       .catch((err) => {
         response
@@ -52,7 +52,7 @@ class StudentsController {
     const { major } = request.params;
 
     if (!VALID_MAJORS.includes(major)) {
-      response.status(500).send("Major parameter must be CS or SWE");
+      response.status(500).send('Major parameter must be CS or SWE');
       return;
     }
     readDatabase(dataPath)
@@ -76,4 +76,3 @@ class StudentsController {
 }
 
 export default StudentsController;
-
